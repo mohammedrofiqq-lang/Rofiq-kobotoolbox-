@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rofiq-KoboToolbox — Data Collection Platform</title>
+<style>
+:root{--blue:#1689e8;--blue2:#0874cf;--ink:#242936;--muted:#626b7b;--pale:#f5f7fb;--border:#e8ebf1}
+*{box-sizing:border-box}body{margin:0;background:#fff;color:var(--ink);font-family:Arial,Helvetica,sans-serif}
+header{height:82px;border-bottom:1px solid #f0f1f4;display:flex;align-items:center;justify-content:space-between;padding:0 max(5%,calc((100% - 1180px)/2));gap:18px}
+.brand{display:flex;align-items:center;gap:12px;font-size:21px;font-weight:700;color:#253348}
+.logo{width:42px;height:42px;border-radius:12px;background:var(--blue);display:grid;place-items:center;color:#fff;font-size:25px;font-weight:bold}
+.header-actions{display:flex;align-items:center;gap:14px}.link{border:0;background:none;color:#1269ae;font-size:16px;font-weight:600;cursor:pointer}
+.get{background:var(--blue);color:white;border:0;border-radius:10px;padding:15px 25px;font-size:16px;font-weight:700;cursor:pointer}
+main{max-width:1120px;margin:0 auto;padding:55px 24px 70px}
+h1{text-align:center;font-family:Georgia,serif;font-size:clamp(35px,6vw,58px);line-height:1.12;margin:12px auto 58px;max-width:760px;color:#30323a}
+.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px;max-width:1000px;margin:auto}
+.card{background:#f8f8fa;border:1px solid #f1f1f4;border-radius:14px;padding:42px 40px 34px;min-height:350px}
+.symbol{width:76px;height:76px;background:#e5f3ff;color:var(--blue);border-radius:15px;display:grid;place-items:center;font-size:39px;margin-bottom:24px}
+h2{font-size:28px;line-height:1.25;margin:0 0 22px;color:#30323a}
+p{font-size:19px;line-height:1.65;color:#4e5664;margin:0 0 28px}
+.action{width:100%;border:0;border-radius:9px;padding:17px 14px;background:var(--blue);color:white;font-size:18px;font-weight:700;cursor:pointer}
+.action:hover,.get:hover{background:var(--blue2)}.signin{display:block;text-align:center;margin:25px auto 0;color:#1269ae;font-size:18px;font-weight:600;text-decoration:none;cursor:pointer}
+footer{text-align:center;color:#7b8492;border-top:1px solid #f0f1f4;padding:24px;font-size:13px}
+.modal{display:none;position:fixed;inset:0;background:#10182888;align-items:center;justify-content:center;padding:18px;z-index:5}
+.modal.show{display:flex}.dialog{background:#fff;border-radius:14px;padding:28px;width:min(100%,440px);box-shadow:0 20px 70px #0003}
+.dialog h2{font-size:25px}.close{float:right;border:0;background:#f0f2f5;border-radius:50%;width:32px;height:32px;cursor:pointer}
+label{display:block;font-weight:700;margin:16px 0 7px}input{width:100%;padding:13px;border:1px solid #ccd3dd;border-radius:8px;font-size:16px}
+.note{font-size:13px;color:#6b7280;line-height:1.5;margin-top:16px}.message{display:none;background:#fff6df;color:#725000;padding:12px;border-radius:8px;margin-top:14px;font-size:14px;line-height:1.5}
+@media(max-width:720px){header{height:72px;padding:0 18px}.brand{font-size:17px}.logo{width:38px;height:38px}.get{padding:12px 15px;font-size:14px}main{padding:38px 18px 48px}h1{margin-bottom:35px}.cards{grid-template-columns:1fr;gap:18px}.card{padding:30px 25px;min-height:0}.symbol{width:65px;height:65px;font-size:34px}h2{font-size:25px}p{font-size:17px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="brand"><div class="logo">R</div><span>Rofiq-KoboToolbox</span></div>
+  <div class="header-actions"><button class="get" onclick="openModal('create')">Get started</button></div>
+</header>
+<main>
+  <h1>Sign in or create an account</h1>
+  <div class="cards">
+    <section class="card">
+      <div class="symbol">◎</div>
+      <h2>Rofiq Data Collection</h2>
+      <p>Create digital forms, collect information in the field, and organize your project data in one place.</p>
+      <button class="action" onclick="openModal('create')">Create an account</button>
+      <a class="signin" onclick="openModal('signin')">Sign in →</a>
+    </section>
+    <section class="card">
+      <div class="symbol">▤</div>
+      <h2>Explore the platform</h2>
+      <p>Preview the form builder, data collection workflow, submissions, and monitoring dashboard.</p>
+      <button class="action" onclick="showDemo()">Explore demo</button>
+      <a class="signin" href="#features">View features ↓</a>
+    </section>
+  </div>
+  <section id="features" style="max-width:1000px;margin:65px auto 0">
+    <h2 style="text-align:center">A simple workspace for field data</h2>
+    <div class="cards">
+      <div class="card" style="min-height:0"><h2>Form builder</h2><p>Create questionnaires with text, number, date, and selection questions.</p></div>
+      <div class="card" style="min-height:0"><h2>Data management</h2><p>Review submissions and prepare exports for analysis and reporting.</p></div>
+    </div>
+  </section>
+  <p class="note" style="max-width:900px;margin:35px auto 0;text-align:center">Independent prototype. This sample page does not provide real account registration, authentication, or secure data storage yet. Do not enter personal or sensitive information.</p>
+</main>
+<footer>© 2026 Rofiq-KoboToolbox · Independent data collection platform</footer>
+
+<div class="modal" id="modal" role="dialog" aria-modal="true">
+ <div class="dialog">
+  <button class="close" onclick="closeModal()">×</button>
+  <h2 id="modalTitle">Create an account</h2>
+  <form onsubmit="event.preventDefault();document.getElementById('message').style.display='block'">
+   <label for="email">Email address</label><input id="email" type="email" placeholder="you@example.com" required>
+   <label for="password">Password</label><input id="password" type="password" placeholder="Enter a password" required minlength="8">
+   <button class="action" style="margin-top:22px" id="submitBtn">Continue</button>
+  </form>
+  <div class="message" id="message">This is a visual prototype only. Account creation and sign-in are not connected to a secure server yet. No account has been created.</div>
+  <div class="note">For safety, do not use a real password on this demonstration page.</div>
+ </div>
+</div>
+<script>
+function openModal(mode){document.getElementById('modal').classList.add('show');document.getElementById('message').style.display='none';document.getElementById('modalTitle').textContent=mode==='signin'?'Sign in':'Create an account';document.getElementById('submitBtn').textContent=mode==='signin'?'Sign in':'Create account'}
+function closeModal(){document.getElementById('modal').classList.remove('show')}
+function showDemo(){alert('Demo preview: Form Builder, Data Collection, Submissions, and Dashboard are planned for the next build.')}
+document.getElementById('modal').addEventListener('click',e=>{if(e.target.id==='modal')closeModal()});
+</script>
+</body>
+</html>
